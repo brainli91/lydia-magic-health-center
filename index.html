@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydia Magic Health Center | Scarborough's Trusted Health Clinic</title>
+    <meta name="description" content="Lydia Magic Health Center - Acupuncture, Massage, Herbs & Cupping in Scarborough, ON. Kind, sweet & dedicated care by Lydia.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #2a9d8f;
+            --primary-dark: #21867a;
+            --secondary: #e76f51;
+            --accent: #f4a261;
+            --light: #f8f9fa;
+            --dark: #264653;
+            --text: #555;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .logo span { color: var(--secondary); }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover { color: var(--primary); }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after { width: 100%; }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #1a6b5f 100%);
+            color: white;
+            padding: 180px 5% 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-icons {
+            font-size: 3rem;
+            margin: 1.5rem 0;
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 5px 20px rgba(231, 111, 81, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(231, 111, 81, 0.5);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        /* Services */
+        .services {
+            background: linear-gradient(180deg, var(--light) 0%, #e8f4f2 100%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .service-card h3 {
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        /* Image Gallery */
+        .gallery-section {
+            background: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        /* About */
+        .about {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-feature:hover {
+            transform: translateX(10px);
+        }
+        
+        .about-feature span { font-size: 2rem; }
+        
+        .about-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .about-image::before {
+            content: '';
+            width: 150px;
+            height: 150px;
+            background: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=200&q=80') center/cover;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .about-image .quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.9;
+            max-width: 400px;
+            margin-top: 2rem;
+        }
+        
+        /* Reviews */
+        .reviews {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a47 50%, #0d262d 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .reviews .section-title h2,
+        .reviews .section-title p {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .review-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-10px);
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .review-author::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        /* Contact */
+        .contact {
+            background: linear-gradient(180deg, var(--light) 0%, white 100%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .contact-item span {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .contact-item h4 {
+            color: var(--dark);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-item p,
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+        
+        .map-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(42, 157, 143, 0.3);
+        }
+        
+        .map-box a {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .map-box a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .map-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            line-height: 50px;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollBounce 2s ease infinite;
+        }
+        
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            position: relative;
+        }
+        
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: scrollDown 2s ease infinite;
+        }
+        
+        @keyframes scrollDown {
+            0%, 100% { opacity: 1; top: 8px; }
+            50% { opacity: 0; top: 25px; }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .about-content, .contact-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+            .section-title h2 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Lydia <span>Magic</span> Health Center</div>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Path to Natural Healing</h1>
+            <p>Experience the magic of traditional Chinese medicine with Acupuncture, Massage, Herbs & Cupping in a warm, caring environment.</p>
+            <div class="hero-icons">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=60&q=80" alt="Acupuncture" style="width:50px;height:50px;border-radius:50%;margin:0 10px;">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=60&q=80" alt="Massage" style="width:50px;height:50px;border-radius:50%;margin:0 10px;">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=60&q=80" alt="Herbs" style="width:50px;height:50px;border-radius:50%;margin:0 10px;">
+                <img src="https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=60&q=80" alt="Cupping" style="width:50px;height:50px;border-radius:50%;margin:0 10px;">
+            </div>
+            <a href="#contact" class="btn">📞 Book Your Relaxation</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>🧘 Our Healing Services</h2>
+            <p>Traditional therapies for modern wellness</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=200&q=80" alt="Acupuncture" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">
+                <h3>Acupuncture</h3>
+                <p>Ancient needle therapy to balance energy, relieve pain, and restore harmony to your body.</p>
+            </div>
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=200&q=80" alt="Massage" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">
+                <h3>Therapeutic Massage</h3>
+                <p>Relaxing massage to ease tension, improve circulation, and promote deep relaxation.</p>
+            </div>
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=200&q=80" alt="Herbal Medicine" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">
+                <h3>Herbal Medicine</h3>
+                <p>Custom herbal prescriptions using traditional Chinese medicine formulas for your unique needs.</p>
+            </div>
+            <div class="service-card fade-in">
+                <img src="https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=200&q=80" alt="Cupping Therapy" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">
+                <h3>Cupping Therapy</h3>
+                <p>Ancient suction therapy to detoxify, improve blood flow, and relieve muscle tension.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-title">
+            <h2>Our Wellness Space</h2>
+            <p>A peaceful environment for your healing journey</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Relaxing massage">
+                <div class="gallery-overlay">
+                    <h4>Therapeutic Massage</h4>
+                    <p>Relaxing deep tissue massage</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80" alt="Acupuncture treatment">
+                <div class="gallery-overlay">
+                    <h4>Acupuncture</h4>
+                    <p>Traditional needle therapy</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=800&q=80" alt="Facial acupuncture">
+                <div class="gallery-overlay">
+                    <h4>Facial Acupuncture</h4>
+                    <p>Natural rejuvenation</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" alt="Therapeutic massage">
+                <div class="gallery-overlay">
+                    <h4>Wellness Massage</h4>
+                    <p>Professional care & expertise</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80" alt="Herbal medicine">
+                <div class="gallery-overlay">
+                    <h4>Herbal Medicine</h4>
+                    <p>Natural healing solutions</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80" alt="Cupping therapy">
+                <div class="gallery-overlay">
+                    <h4>Cupping Therapy</h4>
+                    <p>Ancient detox treatment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>About Lydia Magic Health Center</h2>
+            <p>Caring, dedicated service since day one</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Meet Lydia 🌟</h3>
+                <p>At Lydia Magic Health Center, we believe healing comes from a place of compassion and dedication. Our practitioner, Lydia, is known for her <strong>kind and sweet vibe</strong> that puts every patient at ease.</p>
+                <br>
+                <p>Patients consistently describe Lydia as <strong>highly proactive and dedicated</strong> — going above and beyond to ensure each treatment is tailored to your unique needs. Whether you're seeking relief from chronic pain, hormonal balance, or general wellness, Lydia's gentle approach and expertise have earned her strong recommendations from satisfied clients.</p>
+                <div class="about-features">
+                    <div class="about-feature fade-in"><span>💖</span> Kind & Caring</div>
+                    <div class="about-feature fade-in"><span>✨</span> Proactive</div>
+                    <div class="about-feature fade-in"><span>🎯</span> Dedicated</div>
+                    <div class="about-feature fade-in"><span>🌱</span> Natural Healing</div>
+                </div>
+            </div>
+            <div class="about-image fade-in">
+                <p class="quote">"Lydia's kind and sweet vibe makes every visit a healing experience. She truly cares about each patient's wellness journey."</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="section-title">
+            <h2>💬 What Our Patients Say</h2>
+            <p>Real reviews from real patients</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Lydia is absolutely wonderful! Her kind and sweet vibe immediately puts you at ease. She's so proactive about your care and genuinely cares about each patient."</p>
+                <p class="review-author">Verified Patient</p>
+            </div>
+            <div class="review-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"I highly recommend Lydia for general health concerns. Her acupuncture sessions have made a real difference in my wellness journey. The massage is incredible!"</p>
+                <p class="review-author">Happy Client</p>
+            </div>
+            <div class="review-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Dedicated and professional! Lydia goes above and beyond. The cupping therapy was amazing and the herbs really helped me feel balanced. Best massage in Scarborough!"</p>
+                <p class="review-author">Satisfied Patient</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>📍 Visit Us</h2>
+            <p>Easy to find, easy to reach</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <div>
+                        <h4>Address</h4>
+                        <p>3272 Midland Ave, Unit B125<br>Scarborough, ON M1V 0C4</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <div>
+                        <h4>Phone</h4>
+                        <p><a href="tel:+16477782986">+1 647-778-2986</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div>
+                        <h4>Price Range</h4>
+                        <p>$$ (Moderate)</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div>
+                        <h4>Follow Us</h4>
+                        <p><a href="https://www.facebook.com/p/Lydia-Magic-Health-Clinic-100080811546714/" target="_blank">Facebook Page</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-box fade-in">
+                <h3>Find Your Way Here</h3>
+                <p>3272 Midland Ave, Unit B125<br>Scarborough, ON M1V 0C4</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=3272+Midland+Ave+Unit+B125+Scarborough+ON" target="_blank">Open Google Maps</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Lydia Magic Health Center. All rights reserved.</p>
+                <p>Traditional Chinese Medicine & Natural Healing</p>
+        <div class="social-links">
+            <a href="#" title="Facebook">Facebook</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Phone">📞</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
