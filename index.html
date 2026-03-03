@@ -719,6 +719,49 @@
             50% { opacity: 0; top: 25px; }
         }
         
+        /* Intake Form Section */
+        .intake-section {
+            background: linear-gradient(135deg, var(--light) 0%, #e8f4f2 100%);
+        }
+        
+        .intake-container .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .intake-container label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .intake-container input[type="text"],
+        .intake-container input[type="email"],
+        .intake-container input[type="tel"],
+        .intake-container input[type="date"],
+        .intake-container select,
+        .intake-container textarea {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        
+        .intake-container input:focus,
+        .intake-container select:focus,
+        .intake-container textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .intake-container textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
         /* Booking Section */
         .booking {
             background: linear-gradient(135deg, var(--light) 0%, #e8f4f2 100%);
@@ -1045,6 +1088,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#fees">Fees</a></li>
             <li><a href="#booking">Book Now</a></li>
+            <li><a href="#intake">Intake Form</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#reviews">Reviews</a></li>
@@ -1210,6 +1254,198 @@
         <p class="form-note" style="text-align: center; margin-top: 2rem;">We will call you to confirm your appointment within 24 hours.</p>
     </section>
     
+    <!-- Patient Intake Form Section -->
+    <section id="intake" class="intake-section">
+        <div class="section-title">
+            <h2>📝 Patient Intake Form</h2>
+            <p>Please complete this form before your first visit</p>
+        </div>
+        <div class="intake-container" style="max-width: 900px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.1);">
+            <form id="intakeForm" action="https://formsubmit.co/brian.sibo.li@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Patient Intake Form - Lydia Magic Health Center">
+                <input type="hidden" name="_next" value="https://lydiamagic.com">
+                
+                <!-- Personal Information -->
+                <div class="intake-section-title" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; font-size: 1.2rem;">Personal Information</h3>
+                </div>
+                <div class="intake-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="patient_name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required placeholder="(647) 778-2986">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Address</label>
+                        <input type="text" name="address" placeholder="Your address">
+                    </div>
+                    <div class="form-group">
+                        <label>Occupation</label>
+                        <input type="text" name="occupation" placeholder="Your occupation">
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Care Physician</label>
+                        <input type="text" name="physician" placeholder="Doctor's name">
+                    </div>
+                </div>
+
+                <!-- Therapy Experience -->
+                <div class="intake-section-title" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; font-size: 1.2rem;">Therapy Experience</h3>
+                </div>
+                <div class="intake-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <label>Have you received TCM therapy before?</label>
+                        <select name="tcm_before">
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Were you referred by a health care practitioner?</label>
+                        <select name="referred">
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>If referred, please provide their name and address:</label>
+                        <input type="text" name="referrer_info" placeholder="Referrer details">
+                    </div>
+                </div>
+
+                <!-- Medical Conditions -->
+                <div class="intake-section-title" style="background: linear-gradient(135deg, var(--secondary), #d35400); color: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; font-size: 1.2rem;">Medical Conditions (Check all that apply)</h3>
+                </div>
+                <div class="conditions-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Cardiovascular</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="High blood pressure"> High blood pressure</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Low blood pressure"> Low blood pressure</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Heart disease"> Heart disease</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Pacemaker"> Pacemaker</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Stroke/CVA"> Stroke/CVA</label>
+                    </div>
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Respiratory</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Asthma"> Asthma</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Bronchitis"> Bronchitis</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Chronic cough"> Chronic cough</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Shortness of breath"> Shortness of breath</label>
+                    </div>
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Head/Neck</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Headaches"> Headaches</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Migraines"> Migraines</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Vision problems"> Vision problems</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Ear problems"> Ear problems</label>
+                    </div>
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Other Conditions</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Diabetes"> Diabetes</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Arthritis"> Arthritis</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Cancer"> Cancer</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Epilepsy"> Epilepsy</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Skin conditions"> Skin conditions</label>
+                    </div>
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Women's Health</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Pregnant"> Currently pregnant</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Gynecological conditions"> Gynecological conditions</label>
+                    </div>
+                    <div class="condition-category">
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem; font-size: 1rem;">Infections</h4>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Hepatitis"> Hepatitis</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="TB"> Tuberculosis</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="HIV"> HIV</label>
+                        <label style="display: block; margin-bottom: 0.3rem; font-size: 0.9rem;"><input type="checkbox" name="conditions[]" value="Herpes"> Herpes</label>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="intake-section-title" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; font-size: 1.2rem;">Additional Information</h3>
+                </div>
+                <div class="intake-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <label>Current Medications</label>
+                        <textarea name="medications" rows="3" placeholder="List any medications you are currently taking"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Allergies</label>
+                        <textarea name="allergies" rows="2" placeholder="List any allergies (medications, foods, etc.)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Surgery History</label>
+                        <textarea name="surgery" rows="2" placeholder="List any past surgeries with dates"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Injury History</label>
+                        <textarea name="injuries" rows="2" placeholder="List any significant injuries"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason for Seeking Treatment *</label>
+                        <textarea name="reason" rows="4" required placeholder="Please describe your symptoms, pain areas, or health concerns that brought you here. Include the location of any tissue or joint discomfort."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>How is your general health overall?</label>
+                        <select name="general_health">
+                            <option value="">Select</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Family History -->
+                <div class="intake-section-title" style="background: linear-gradient(135deg, var(--secondary), #d35400); color: white; padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0; font-size: 1.2rem;">Family History</h3>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <p style="margin-bottom: 1rem; color: var(--text);">Is there a family history of any of the following?</p>
+                    <div class="conditions-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="Heart disease"> Heart disease</label>
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="Diabetes"> Diabetes</label>
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="Cancer"> Cancer</label>
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="Stroke"> Stroke</label>
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="Arthritis"> Arthritis</label>
+                        <label style="font-size: 0.9rem;"><input type="checkbox" name="family_history[]" value="High blood pressure"> High blood pressure</label>
+                    </div>
+                </div>
+
+                <!-- Consent -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <p style="font-size: 0.9rem; color: var(--text); margin-bottom: 1rem;">
+                        <strong>Privacy Notice:</strong> The information provided will be kept confidential and used only for your treatment. 
+                        Your written permission will be required to release any information. All information will assist us in treating you safely.
+                    </p>
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem;">
+                        <input type="checkbox" name="consent" required style="margin-top: 0.3rem;">
+                        <span>I confirm that the information provided is accurate and complete to the best of my knowledge.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="form-submit" style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">Submit Intake Form</button>
+            </form>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section id="gallery" class="gallery-section">
         <div class="section-title">
